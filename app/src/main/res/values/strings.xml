@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RecyclerViewExample</string>
+    <string name="name">Victor M</string>
+    <string name="telefono">4545-9865</string>
+    <string name="email">lalala@gmail.com</string>
+    <string name="pnombre">nombre</string>
+    <string name="ptelefono">telefono</string>
+    <string name="pemail">email</string>
+    <string name="search">Buscar</string>
+    <string name="settings">Ajustes</string>
+    <string name="actionBarText">Fishy contacts</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
