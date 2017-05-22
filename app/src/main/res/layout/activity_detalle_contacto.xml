@@ -9,11 +9,36 @@
     android:padding="20dp">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Numero:"/>
+    <TextView
         android:id="@+id/tvNumero"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="878451232"
         android:padding="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Correo:"/>
+    <TextView
+        android:id="@+id/tvCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="lalala@gmai.com"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Likes count:"/>
+    <TextView
+        android:id="@+id/tvLikesCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="22"/>
+
 
     <ImageView
         android:src="@drawable/spaceships_007"
@@ -21,5 +46,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"/>
+
 
 </LinearLayout>

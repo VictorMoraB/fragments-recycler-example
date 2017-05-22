@@ -5,13 +5,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.mora.victor.recyclerviewexample.adapter.PageAdapter;
-import com.mora.victor.recyclerviewexample.fragment.Perfil;
+import com.mora.victor.recyclerviewexample.fragment.PerfilFragment;
 import com.mora.victor.recyclerviewexample.fragment.RecyclerViewFragment;
-import com.mora.victor.recyclerviewexample.pojo.Contacto;
 
 import java.util.ArrayList;
 
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Fragment> agregarFragments(){
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new RecyclerViewFragment());
-        fragments.add(new Perfil());
+        fragments.add(new PerfilFragment());
         return  fragments;
     }
 

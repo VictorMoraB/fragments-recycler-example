@@ -20,6 +20,7 @@ import java.util.ArrayList;
  */
 
 public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.ContactoViewHolder>
+
 {
 
     ArrayList<Contacto> contactos;
@@ -36,30 +37,45 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
         //construir un view a partir del xml definido para el cardview
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_contacto,
                 parent, false);
-
+/*
        v.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+
+               //get id
+
                Intent intent = new Intent(parentActivity, detalle_contacto.class);
 
                 parentActivity.startActivity(intent);
            }
        });
-
+*/
 
         return new ContactoViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ContactoViewHolder holder, int position) {
+    public void onBindViewHolder(ContactoViewHolder holder, final int position) {
 
-        Contacto contacto = contactos.get(position);
+        final Contacto contacto = contactos.get(position);
         holder.tvNombre.setText(contacto.getNombre());
         holder.tvTelefono.setText(contacto.getTelefono());
         holder.imgFoto.setImageResource(contacto.getImagen());
+        holder.tvCorreo.setText(contacto.getCorreo());
+        holder.tvLikes.setText(Integer.toString(contacto.getLikesCount()));
+        holder.ivLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contacto.setLikesCount(contacto.getLikesCount()+1);
+                notifyItemChanged(position);
+            }
+        });
+
 
 
     }
+
+
 
     @Override
     public int getItemCount() { //cantidad de elementos que contiene la lista
@@ -72,6 +88,9 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
         private ImageView imgFoto;
         private TextView tvNombre;
         private TextView tvTelefono;
+        private TextView tvCorreo;
+        private TextView tvLikes;
+        private ImageView ivLike;
 
         public ContactoViewHolder(View itemView) {
             super(itemView);
@@ -79,6 +98,9 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
             imgFoto = (ImageView)itemView.findViewById(R.id.imgFotoCV);
             tvNombre = (TextView)itemView.findViewById(R.id.tvNombreCV);
             tvTelefono = (TextView)itemView.findViewById(R.id.tvTelefonoCV);
+            tvCorreo = (TextView)itemView.findViewById(R.id.tvCorreoCV);
+            tvLikes = (TextView)itemView.findViewById(R.id.tvLikesCV);
+            ivLike = (ImageView)itemView.findViewById(R.id.ivFishyLike);
 
         }
     }

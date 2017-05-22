@@ -13,10 +13,10 @@ import com.mora.victor.recyclerviewexample.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Perfil extends Fragment {
+public class PerfilFragment extends Fragment {
 
 
-    public Perfil() {
+    public PerfilFragment() {
         // Required empty public constructor
     }
 
