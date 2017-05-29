@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.mora.victor.recyclerviewexample.R;
 import com.mora.victor.recyclerviewexample.adapter.ContactoAdaptador;
 import com.mora.victor.recyclerviewexample.pojo.Contacto;
+import com.mora.victor.recyclerviewexample.presentador.IRecyclerViewFragmentPresenter;
+import com.mora.victor.recyclerviewexample.presentador.RecyclerViewFragmentPresenter;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ public class RecyclerViewFragment extends android.support.v4.app.Fragment implem
 
     private RecyclerView myRecycler;
     private ArrayList<Contacto> contactos = new ArrayList<Contacto>();
-    private ContactoAdaptador adaptador;
+    private IRecyclerViewFragmentPresenter presenter;
 
     @Nullable
     @Override
@@ -32,6 +34,8 @@ public class RecyclerViewFragment extends android.support.v4.app.Fragment implem
         View v = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
         myRecycler = (RecyclerView)v.findViewById(R.id.rvContactos);
+        presenter = new RecyclerViewFragmentPresenter(this, getContext());
+
         return  v;
 
     }

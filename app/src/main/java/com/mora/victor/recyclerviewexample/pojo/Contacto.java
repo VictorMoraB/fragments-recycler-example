@@ -23,6 +23,10 @@ public class Contacto {
         LikesCount = likesCount;
     }
 
+    public Contacto() {
+
+    }
+
     public String getNombre() {
         return Nombre;
     }
@@ -61,5 +65,13 @@ public class Contacto {
 
     public void setLikesCount(int likesCount) {
         LikesCount = likesCount;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
