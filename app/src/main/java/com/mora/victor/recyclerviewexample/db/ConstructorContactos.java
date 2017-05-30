@@ -15,9 +15,29 @@ import java.util.ArrayList;
 public class ConstructorContactos {
 
     private Context context;
+    private static final int LIKE = 1;
 
     public ConstructorContactos(Context context){
         this.context = context;
+    }
+
+    public void darLikeContacto(Contacto contacto){
+        BaseDatos db = new BaseDatos(context);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ConstantesBaseDatos.TABLE_LIKES_CONTACT_ID_CONTACTO, contacto.getId());
+        contentValues.put(ConstantesBaseDatos.TABLE_LIKES_CONTACT_NUMERO_LIKES, LIKE);
+        db.insertarLikeContacto(contentValues);
+    }
+
+    public int obtenerLikesContacto(Contacto contacto){
+        int likes=0;
+        BaseDatos db = new BaseDatos(context);
+        try{
+            likes = db.obtenerLikesContacto(contacto);
+        }finally {
+            db.close();
+            return  likes;
+        }
     }
 
     public ArrayList<Contacto> obtenerDatos(){

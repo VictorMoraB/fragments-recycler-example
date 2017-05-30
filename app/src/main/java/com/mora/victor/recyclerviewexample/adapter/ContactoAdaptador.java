@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mora.victor.recyclerviewexample.db.ConstructorContactos;
 import com.mora.victor.recyclerviewexample.pojo.Contacto;
 import com.mora.victor.recyclerviewexample.R;
 import com.mora.victor.recyclerviewexample.detalle_contacto;
@@ -55,7 +56,7 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
     }
 
     @Override
-    public void onBindViewHolder(ContactoViewHolder holder, final int position) {
+    public void onBindViewHolder(final ContactoViewHolder holder, final int position) {
 
         final Contacto contacto = contactos.get(position);
         holder.tvNombre.setText(contacto.getNombre());
@@ -66,8 +67,16 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
         holder.ivLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contacto.setLikesCount(contacto.getLikesCount()+1);
-                notifyItemChanged(position);
+                //reemplzar el constructor en memoria por el metodo que incrementa los likes
+                // en la base de datos
+                //contacto.setLikesCount(contacto.getLikesCount()+1);
+                ConstructorContactos constructorContactos = new ConstructorContactos(parentActivity);
+                constructorContactos.darLikeContacto(contacto);
+
+                int likes = constructorContactos.obtenerLikesContacto(contacto);
+                holder.tvLikes.setText(Integer.toString(likes));
+
+                //notifyItemChanged(position);
             }
         });
 

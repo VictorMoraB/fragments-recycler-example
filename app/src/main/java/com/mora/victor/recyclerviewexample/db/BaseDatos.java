@@ -42,6 +42,13 @@ public class BaseDatos extends SQLiteOpenHelper {
                 contactoActual.setImagen(cursor.getInt(4));
                 contactos.add(contactoActual);
                 //obtener los likes de la tabla de likes
+                String queryLikes = "SELECT COUNT(" +  ConstantesBaseDatos.TABLE_LIKES_CONTACT_NUMERO_LIKES +
+                        ")" + "as likes" + " FROM " + ConstantesBaseDatos.TABLE_LIKES_CONTACT +
+                        " WHERE " + ConstantesBaseDatos.TABLE_LIKES_CONTACT_ID_CONTACTO + "=" + contactoActual.getId();
+                Cursor registrosLikes = db.rawQuery(queryLikes, null);
+                if(registrosLikes.moveToNext()){
+                    contactoActual.setLikesCount(registrosLikes.getInt(0));
+                }
             }
         }finally {
             db.close();
@@ -49,6 +56,33 @@ public class BaseDatos extends SQLiteOpenHelper {
         return contactos;
 }
 
+    public int obtenerLikesContacto(Contacto contacto){
+        int likes = 0;
+        String query = "SELECT COUNT(" + ConstantesBaseDatos.TABLE_LIKES_CONTACT_NUMERO_LIKES + ")" +
+                "FROM " + ConstantesBaseDatos.TABLE_LIKES_CONTACT +
+                " WHERE " +  ConstantesBaseDatos.TABLE_LIKES_CONTACT_ID_CONTACTO + "= " +
+                contacto.getId();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            Cursor registros = db.rawQuery(query, null);
+            if(registros.moveToNext()){
+                likes = registros.getInt(0);
+            }
+        }finally {
+            db.close();
+        }
+        return likes;
+    }
+
+    public void insertarLikeContacto(ContentValues contentValues){
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            db.insert(ConstantesBaseDatos.TABLE_LIKES_CONTACT, null, contentValues);
+        }finally {
+            db.close();
+        }
+    }
 
     public void insertarContacto(ContentValues contentValues){
         SQLiteDatabase db = this.getWritableDatabase();
